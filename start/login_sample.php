@@ -63,7 +63,7 @@
 				
 				echo "Kasutaja logis sisse id=".$id_from_db;
 				
-		}else{
+			}else{
 			echo "Wrong credentials!";
 		}
 			$stmt->close();
