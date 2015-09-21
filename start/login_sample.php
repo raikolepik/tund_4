@@ -1,5 +1,15 @@
 <?php
 
+	//loome AB ühenduse
+    require_once("../../config.php");
+    $database = "if15_raiklep";
+    $mysqli = new mysqli($servername, $username, $password, $database);
+    
+    //check connection
+    if($mysqli->connect_error) {
+        die("connect error ".mysqli_connect_error());
+    }
+
   // muuutujad errorite jaoks
 	$email_error = "";
 	$password_error = "";
@@ -71,6 +81,10 @@
 			//salvestan andmebaasi
 			$stmt = $mysqli->prepare("INSERT INTO
 			user_sample (email, password) VALUES (?,?)");
+			
+			//kirjutan välja errori
+			echo $stmt->error;
+			
 			
 			//paneme muutujad küsimärkide asemel
 			//ss - s string, iga muutuja kohta, 1 täht
