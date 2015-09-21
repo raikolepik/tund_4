@@ -48,6 +48,30 @@
 				echo "Võib sisse logida! Kasutajanimi on ".$email." ja parool on ".$password;
 			}
 
+				$hash = hash("sha512, $password");
+				
+				$stmt = $mysqli->prepare("SELECT id, email FROM user_sample WHERE email =? AND password =? ");
+				// küsimärkide asendus
+				$stmt->bind_param("SS", $email, $hash);
+				//AB tulnud muutujad
+				$stmt->bind_result($id_from_db, $email_from_db);
+				$stmt->excecute();
+				// teeb päringu ja kui on tõene(st, et AB oli see )
+				if($stmt->fetch())
+					
+				//kasutaja email ja parool 6iged
+				
+				echo "Kasutaja logis sisse id=".$id_from_db;
+				
+		}else{
+			echo "Wrong credentials!";
+		}
+			$stmt->close();
+			
+			
+			
+			
+			
 		} // login if end
 
     // *********************
