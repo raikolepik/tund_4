@@ -1,5 +1,16 @@
 <?php 
 
+	//loome AB ühenduse
+	require_once("../config.php");
+	$database = "if15_raiklep";
+	$mysql = new mysqli ($servername,
+	$username, $password, $database);
+
+	//check connection
+	if($mysqli->connect_error) {
+		die("connect error".mysqli_connect_error());	
+	}
+
     // user_form.php
     
     // jutumärkide vahele input elemendi NAME
