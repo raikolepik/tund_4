@@ -65,10 +65,24 @@
 				echo hash ("sha512", $create_password);
 				echo "Võib kasutajat luua! Kasutajanimi on ".$create_email." ja parool on ".$create_password;
       }
-
+			//tekitan paroolir2si
+			$hash = hash("sha512", $create_password);
+			
+			//salvestan andmebaasi
+			$stmt = $mysqli->prepare("INSERT INTO
+			user_sample (email, password) VALUES (?,?)");
+			
+			//paneme muutujad küsimärkide asemel
+			//ss - s string, iga muutuja kohta, 1 täht
+			$stmt->bind_param("SS", $create_email, $hash);
+			//käivitab sisestuse
+			$stmt->execute();
+			$stmt->close();
+			
+			
     } // create if end
 
-	}
+}
 
   // funktsioon, mis eemaldab kõikvõimaliku üleliigse tekstist
   function cleanInput($data) {
